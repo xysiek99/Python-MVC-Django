@@ -7,10 +7,12 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 class ListListView(ListView):
     model = ToDoList
+    allow_empty = False
     template_name = "todo_app/index.html"
     
 class ItemListView(ListView):
     model = ToDoItem
+    allow_empty = False    
     template_name = "todo_app/todo_list.html"
 
     def get_queryset(self):
