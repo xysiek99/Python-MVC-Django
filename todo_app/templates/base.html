@@ -15,6 +15,15 @@
         <h1 onclick="location.href='{% url "index" %}'">
             ToDo Lists
         </h1>
+        {% if user.is_authenticated %}
+            <p>
+                <input
+                    value="Logout"
+                    type="button"
+                    onclick="location.href='{% url "logout" %}'" />
+                <span>{{user.username}}</span>
+            </p>
+        {% endif %}
     </div>
     <div>
         {% block content %}

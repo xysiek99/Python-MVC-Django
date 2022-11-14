@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from todo_app import views
 
 urlpatterns = [
@@ -8,5 +8,6 @@ urlpatterns = [
     path("list/<int:list_id>/item/add/", views.ItemCreate.as_view(), name="item-add"),
     path("list/<int:list_id>/item/<int:pk>/", views.ItemUpdate.as_view(), name="item-update"),
     path("list/<int:pk>/delete/", views.ListDelete.as_view(), name="list-delete"),
-    path("list/<int:list_id>/item/<int:pk>/delete/", views.ItemDelete.as_view(), name="item-delete")
+    path("list/<int:list_id>/item/<int:pk>/delete/", views.ItemDelete.as_view(), name="item-delete"),
+    path('accounts/', include('django.contrib.auth.urls'))
 ]
