@@ -16,6 +16,7 @@
                         onclick="location.href='{% url "item-update" todo_list.id todo.id %}'">
                         {{ todo.title }}
                         (Due: {{ todo.time_due | date:"l, F j" }})
+                        , Created by: {{ todo.author }}
                     </div>
                 </div>
             </li>

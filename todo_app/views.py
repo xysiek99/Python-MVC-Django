@@ -2,14 +2,16 @@ from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from todo_app.models import ToDoList, ToDoItem
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 
-# Create your views here.
-
+@method_decorator(login_required, name='dispatch')
 class ListListView(ListView):
     model = ToDoList
     allow_empty = False
     template_name = "todo_app/index.html"
-    
+
+@method_decorator(login_required, name='dispatch')    
 class ItemListView(ListView):
     model = ToDoItem
     allow_empty = False    
@@ -22,7 +24,8 @@ class ItemListView(ListView):
         context = super().get_context_data()
         context["todo_list"] = ToDoList.objects.get(id=self.kwargs["list_id"])
         return context
-    
+
+@method_decorator(login_required, name='dispatch')
 class ListCreate(CreateView):
     model = ToDoList
     fields = ["title"]
@@ -32,6 +35,7 @@ class ListCreate(CreateView):
         context["title"] = "Add a new list"
         return context    
 
+@method_decorator(login_required, name='dispatch')
 class ItemCreate(CreateView):
     model = ToDoItem
     fields = [

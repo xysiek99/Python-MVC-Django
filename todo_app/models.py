@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -9,6 +10,7 @@ def week_ahead():
 
 class ToDoList(models.Model):
     title = models.CharField(max_length=100, unique=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
 
     def get_absolute_url(self):
         return reverse("list", args=[self.id])
@@ -24,8 +26,7 @@ class ToDoItem(models.Model):
     time_created = models.DateTimeField(auto_now_add=True)
     time_due = models.DateTimeField(default=week_ahead)
     todo_list = models.ForeignKey(ToDoList, on_delete=models.CASCADE)
-
-    # Then also add field called "creator"
+    author = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
 
     def get_absolute_url(self):
         return reverse(
