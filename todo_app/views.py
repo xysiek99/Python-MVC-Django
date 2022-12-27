@@ -8,13 +8,13 @@ from django.contrib.auth.decorators import login_required
 @method_decorator(login_required, name='dispatch')
 class ListListView(ListView):
     model = ToDoList
-    allow_empty = False
+    allow_empty = True
     template_name = "todo_app/index.html"
 
 @method_decorator(login_required, name='dispatch')    
 class ItemListView(ListView):
     model = ToDoItem
-    allow_empty = False    
+    allow_empty = True    
     template_name = "todo_app/todo_list.html"
 
     def get_queryset(self):

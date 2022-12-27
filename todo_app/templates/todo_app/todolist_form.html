@@ -2,21 +2,14 @@
 
 {% block content %}
 
-<h3>{{ title }}</h3>
-<div>
-    <div>
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input
-                value="Save"
-                type="submit">
-            <input
-                value="Cancel"
-                type="button"
-                onclick="location.href='{% url "index" %}';">
-        </form>
-    </div>
+<div style="margin: auto; width: 35%; padding: 5px;">
+    <h2>{{ title }}</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-sm btn-outline-secondary" type="submit" style="font-size: 16px;">Save</button>    
+        <button class="btn btn-sm btn-outline-secondary" type="button" style="font-size: 16px;" onclick="location.href='{% url "index" %}';">Cancel</button>
+    </form>
 </div>
 
 {% endblock %}

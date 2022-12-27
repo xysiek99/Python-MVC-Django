@@ -3,19 +3,17 @@
 {% block content %}
 <!--todolist_confirm_delete.html-->
 
-<h3>Delete List</h3>
 
-<p>Are you sure you want to delete the list "<i>{{ object.title }}</i>"?</p>
+<div style="margin: auto; width: 35%; padding: 5px;">
+    <h2>Delete List</h2>
 
-<form method="POST">
-    {% csrf_token %}
-    <input
-        value="Yes"
-        type="submit">
-</form>
-<input
-    value="Cancel"
-    type="button"
-    onclick="location.href='{% url "list" todolist.id %}';">
+    <h4>Are you sure you want to delete the list <i>"{{ object.title }}"</i> ?</h4>
+
+    <form method="POST">
+        {% csrf_token %}
+        <button class="btn btn-sm btn-outline-secondary" type="submit" style="font-size: 16px;">Yes</button>
+    </form>
+    <button class="btn btn-sm btn-outline-secondary" type="button" style="font-size: 16px;" onclick="location.href='{% url "list" todolist.id %}';">Cancel</button>
+</div>        
 
 {% endblock %}

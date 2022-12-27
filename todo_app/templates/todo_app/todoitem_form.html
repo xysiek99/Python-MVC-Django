@@ -2,26 +2,22 @@
 
 {% block content %}
 
-<h3>{{ title }}</h3>
-<form method="post">
-    {% csrf_token %}
-    <table>
-        {{ form.as_table }}
-    </table>
-    <input
-        value="Submit"
-        type="submit">
-    <input
-        value="Cancel"
-        type="button"
-        onclick="location.href='{% url "list" todo_list.id %}'">
-    <!-- Using this "if" option to 'Delete item' will appear only if item exists -->
-    {% if object %}
-        <input
-            value="Delete item"
-            type="button"
-            onclick="location.href='{% url "item-delete" todo_list.id object.id %}'">
-    {% endif %}
-</form>
+<div style="margin: auto; width: 35%; padding: 5px;">
+    <h2>{{ title }}</h2>
+    <form method="post">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <div style="margin-top: 15px;">
+            <button class="btn btn-sm btn-outline-secondary" type="submit" style="font-size: 16px;">Submit</button>            
+            <button class="btn btn-sm btn-outline-secondary" type="button" style="font-size: 16px;" onclick="location.href='{% url "list" todo_list.id %}'">Cancel</button>            
+            <!-- Using this "if" option to 'Delete item' will appear only if item exists -->
+            {% if object %}
+                <button class="btn btn-sm btn-outline-secondary" type="button" style="font-size: 16px;" onclick="location.href='{% url "item-delete" todo_list.id object.id %}'">Delete item</button>
+            {% endif %}
+        </div>
+    </form>
+</div>
 
 {% endblock %}

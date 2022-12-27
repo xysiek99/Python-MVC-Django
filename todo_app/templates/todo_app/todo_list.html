@@ -1,45 +1,30 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div>
-    <div>
-        <div>
-            <h3>Edit list:</h3>
-            <h5>{{ todo_list.title | upper }}</h5>
-        </div>
-        <ul>
-            {% for todo in object_list %}
-            <li>
-                <div>
-                    <div
-                        role="button"
-                        onclick="location.href='{% url "item-update" todo_list.id todo.id %}'">
-                        {{ todo.title }}
-                        (Due: {{ todo.time_due | date:"l, F j" }})
-                        , Created by: {{ todo.author }}
-                    </div>
-                </div>
-            </li>
-            {% empty %}
-            <p>There are no to-do items in this list.</p>
-            {% endfor %}
-        </ul>
-        <p>
-            <input
-                value="Add a new item"
-                type="button"
-                onclick="location.href='{% url "item-add" todo_list.id %}'" />
-            <input
-                value="Delete list"
-                type="button"
-                onclick="location.href='{% url "list-delete" todo_list.id %}'" />
-        </p>
-        <p>
-            <input
-                value="Back to Menu"
-                type="button"
-                onclick="location.href='{% url "index" %}'" />
-        </p>
-    </div>
+<div style="margin: auto; width: 35%; padding: 5px;">
+    <h1 class="pageHeader">Edit list: {{ todo_list.title | upper }}</h1>
+    <hr style="height:0.5px; background-color:gray;">
+    <ul>
+        {% for todo in object_list %}
+        <nav class="navbar bg-light">
+            <div class="container-fluid">
+              <a class="navbar-brand"  style="color:gray; font-size: 20px;" href="{% url "item-update" todo_list.id todo.id %}">
+                {{ todo.title }}
+                (Due: {{ todo.time_due | date:"l, F j" }})
+                , Created by: {{ todo.author }}</a>
+            </div>
+        </nav>
+        {% empty %}
+        <p>There are no to-do items in this list.</p>
+        {% endfor %}
+    </ul>
+    <p>
+        <button class="btn btn-sm btn-outline-secondary" type="button" style="font-size: 16px;" onclick="location.href='{% url "item-add" todo_list.id %}'">Add a new item</button>            
+        <button class="btn btn-sm btn-outline-secondary" type="button" style="font-size: 16px;" onclick="location.href='{% url "list-delete" todo_list.id %}'">Delete List</button>
+    </p>
+    <p>
+        <button class="btn btn-sm btn-outline-secondary" type="button" style="font-size: 16px;" onclick="location.href='{% url "index" %}'">Back to Menu</button>
+    </p>
+
 </div>
 {% endblock %}

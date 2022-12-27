@@ -1,26 +1,24 @@
 {% extends "base.html" %}
 {% block content %}
 <!--index.html-->
-{% if object_list %}
-<h3>All my lists</h3>
-{% endif %}
-<ul>
-    {% for todolist in object_list %}
-    <li>
-        <div
-            role="button"
-            onclick="location.href='{% url "list" todolist.id %}'">
-            {{ todolist.title }}
-        </div>
-    </li>
-    {% empty %}
-    <h4>You have no lists!</h4>
-    {% endfor %}
-</ul>
-<p>
-    <input
-        value="Add a new list"
-        type="button"
-        onclick="location.href='{% url "list-add" %}'"/>
-</p>
+<div style="margin: auto; width: 35%; padding: 5px;">
+    {% if object_list %}
+    <h1 class="pageHeader">My lists:</h1>
+    <hr style="height:0.5px; background-color:gray;">
+    {% endif %}
+    <ul>
+        {% for todolist in object_list %}
+        <nav class="navbar bg-light">
+            <div class="container-fluid">
+              <a class="navbar-brand"  style="color:gray; font-size: 20px;" href="{% url "list" todolist.id %}">{{ todolist.title }}</a>
+            </div>
+        </nav>
+        {% empty %}
+        <h1 class="pageHeader">You have no lists!</h1>
+        {% endfor %}
+    </ul>
+    <p>
+        <button class="btn btn-sm btn-outline-secondary" type="button" style="font-size: 16px;" onclick="location.href='{% url "list-add" %}'">Add new list</button>
+    </p>
+</div>
 {% endblock %}
