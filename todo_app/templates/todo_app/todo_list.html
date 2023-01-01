@@ -10,8 +10,7 @@
             <div class="container-fluid">
               <a class="navbar-brand"  style="color:gray; font-size: 20px;" href="{% url "item-update" todo_list.id todo.id %}">
                 {{ todo.title }}
-                (Due: {{ todo.time_due | date:"l, F j" }})
-                , Created by: {{ todo.author }}</a>
+                (Due: {{ todo.time_due | date:"l, F j" }})</a>
             </div>
         </nav>
         {% empty %}

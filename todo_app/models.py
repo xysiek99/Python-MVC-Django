@@ -15,8 +15,6 @@ class ToDoList(models.Model):
     def get_absolute_url(self):
         return reverse("list", args=[self.id])
 
-    # below is standard Python way of creating a readable object's representation
-    # not necessary to write this function, but helpful with debugging
     def __str__(self):
         return self.title
 
@@ -33,8 +31,6 @@ class ToDoItem(models.Model):
             "item-update", args=[str(self.todo_list.id), str(self.id)]
         )
 
-    # below is standard Python way of creating a readable object's representation
-    # not necessary to write this function, but helpful with debugging
     def __str__(self):
         return f"{self.title}: due {self.time_due}"
 

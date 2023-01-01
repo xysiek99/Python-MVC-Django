@@ -17,20 +17,18 @@
             </div>
            
             <div id="navbar" class="collapse navbar-collapse">
+                {% if user.is_authenticated %}
                 <ul class="nav navbar-nav navbar-right">
-                    {% if user.is_authenticated %}
                     <li>
                         <a href='{% url "logout" %}' style="color: red;">Logout</a>
                     </li>
-                    {% endif %}
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    {% if user.is_authenticated %}
                     <li>
                         <a style="color: white;">{{ user.username }}</a>
                     </li>
-                    {% endif %}
                 </ul>
+                {% endif %}
             </div>
         </div>
     </nav>
